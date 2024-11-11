@@ -1,0 +1,44 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n = nums.length;
+        int ind = -1;
+        
+        // Find the breaking point
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                ind = i;
+                break;
+            }
+        }
+        
+        // If the array is in descending order, reverse it to get the smallest permutation
+        if (ind == -1) {
+            reverse(nums, 0, n - 1);
+            return;
+        }
+        
+        // Find the next greater element to swap with nums[ind]
+        for (int i = n - 1; i > ind; i--) {
+            if (nums[i] > nums[ind]) {
+                int temp = nums[i];
+                nums[i] = nums[ind];
+                nums[ind] = temp;
+                break;
+            }
+        }
+        
+        // Reverse the rest of the array to get the next lexicographical order
+        reverse(nums, ind + 1, n - 1);
+    }
+    
+    // Helper function to reverse elements from index `start` to `end`
+    public void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    }
+}
