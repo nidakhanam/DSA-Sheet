@@ -1,0 +1,27 @@
+class Solution {
+    public void sortColors(int[] nums) {
+        int n = nums.length;
+        // Taking 3 pointers
+        int low = 0;
+        int mid = 0;
+        int high = n-1;
+        while(mid<=high){
+            if(nums[mid]==0){
+                int t = nums[low];
+                nums[low] = nums[mid];
+                nums[mid] = t;
+                low++;
+                mid++;
+            }
+            else if(nums[mid]==2){
+                int t = nums[high];
+                nums[high] = nums[mid];
+                nums[mid] = t;
+                high--;
+            }
+            else{
+                mid++;
+            }
+    }
+    }
+}
