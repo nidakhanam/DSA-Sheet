@@ -1,0 +1,15 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int n = nums.length;
+        long maxi = Long.MIN_VALUE; 
+        long sum = 0;
+        for(int i=0;i<n;i++){
+            sum += (long)(nums[i]);
+            if(maxi<sum) maxi = sum;
+            //whenever sum reduces to a negative value it is set back as 0 ,
+            //as it is just waste to take -ve value , as in summation it will just reduce further.
+            if(sum < 0) sum =0;
+        }
+        return (int) maxi;
+    }
+}
